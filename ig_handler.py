@@ -1,7 +1,7 @@
 """
 ReelPilot — memory-efficient media pipeline.
 
-Hard rules for the 256 MB container:
+Hard rules:
   * NO headless browsers. Nothing here imports selenium/playwright/etc.
   * yt-dlp streams to disk with a 16K chunk size and a 5 MB/s rate cap.
   * Every download/upload lifecycle ends with gc.collect() + temp cleanup.
@@ -58,8 +58,8 @@ class _BrowserBlocker:
     def find_spec(self, name, path=None, target=None):
         if name.split(".")[0] in _BANNED_MODULES:
             raise ImportError(
-                f"ReelPilot: '{name}' is blocked by the 256MB memory budget "
-                "(no headless browsers allowed)."
+                f"ReelPilot: '{name}' is blocked — headless browsers "
+                "are heavy, fragile and never needed here."
             )
         return None
 
@@ -165,8 +165,7 @@ def download_video(url: str, progress_cb: ProgressFn | None = None) -> VideoJob:
         _safe_unlink(path)
         gc.collect()
         raise DownloadError(
-            f"Video exceeds the {config.MAX_VIDEO_MB}MB budget "
-            "for the 256MB container."
+            f"Video exceeds the {config.MAX_VIDEO_MB}MB budget."
         )
 
     title = (meta or {}).get("title") or path.stem

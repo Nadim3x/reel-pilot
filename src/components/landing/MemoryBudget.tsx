@@ -4,7 +4,7 @@ const guards = [
   {
     icon: Ban,
     title: "No headless browsers",
-    body: "selenium, playwright, puppeteer, chromium and chromedriver are banned — a meta-path import guard refuses them at runtime, and the Dockerfile never pulls GUI libraries.",
+    body: "selenium, playwright, puppeteer, chromium and chromedriver are banned — a meta-path import guard refuses them at runtime, and the installer never pulls GUI libraries.",
   },
   {
     icon: HardDriveDownload,
@@ -19,7 +19,7 @@ const guards = [
   {
     icon: Database,
     title: "SQLite, not a server",
-    body: "WAL-journaled SQLite with a 2MB page cache keeps storage at zero extra processes. Sessions, users and counters live in one file on /data.",
+    body: "WAL-journaled SQLite with a 2MB page cache keeps storage at zero extra processes. Sessions, users and counters live in a single file in the data dir.",
   },
   {
     icon: Timer,
@@ -52,7 +52,7 @@ export const MemoryBudget = () => {
             Engineered below the OOM line
           </h2>
           <p className="mt-3 text-muted-foreground">
-            Every default in ReelPilot exists to keep one shared-cpu-1x machine
+            Every default in ReelPilot exists to keep one always-on phone
             breathing. PYTHONUNBUFFERED=1 and MALLOC_ARENA_MAX=2 ship in the
             environment; the rest is discipline in code.
           </p>
@@ -82,7 +82,7 @@ export const MemoryBudget = () => {
             <span className="h-2.5 w-2.5 rounded-full bg-amber-300/70" />
             <span className="h-2.5 w-2.5 rounded-full bg-primary/70" />
             <span className="ml-2 font-mono-tech text-xs text-muted-foreground">
-              env · fly.toml
+              env · termux
             </span>
           </div>
           <pre className="overflow-x-auto px-5 py-4 font-mono-tech text-xs leading-relaxed text-primary/90 sm:text-sm">

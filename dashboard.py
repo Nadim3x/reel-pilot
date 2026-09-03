@@ -5,10 +5,10 @@ Dark-mode mint/emerald panel (#00E676) served on 0.0.0.0:8080.
   * Admin  (nadim / N@dim69): accounts, 2FA modal, TikTok cookie import,
     pause/activate/delete, member approvals, runtime health.
   * Guest (open view): community analytics only — account list is hidden.
-  * GET /health → {"status": "healthy"} for Fly.io monitoring.
+  * GET /health → {"status": "healthy"} for uptime monitors.
 
 Served by waitress (4 threads, 64-connection cap) — no gunicorn worker
-army, so the whole bot stays comfortably inside the 256MB budget.
+army; the whole bot stays light enough for an always-on phone.
 """
 
 import html
@@ -394,7 +394,7 @@ authenticator app.</div>
           <div class="card"><div class="label">Reels posted</div>
             <div class="value">{total_uploads}</div></div>
         </div>
-        <h2>Runtime guards · 256MB budget</h2>
+        <h2>Runtime guards</h2>
         <div class="card">
           <table>
             <tr><td>MALLOC_ARENA_MAX</td><td><b>{health["malloc_arenas"]}</b></td></tr>
@@ -421,7 +421,7 @@ def render_guest_page(tab: str) -> str:
           ReelPilot is a memory-frugal cross-poster that downloads a reel once
           (streamed to disk in 16K chunks) and publishes it to every active
           Instagram and TikTok account with a random 3-7s pacing delay.
-          It runs on a 256MB container — no headless browsers, ever.
+          It runs as a single lean process — no headless browsers, ever.
         </div>
         <h2>Privacy</h2>
         <div class="card" style="line-height:1.7;flex-basis:100%">

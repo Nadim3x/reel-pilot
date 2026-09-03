@@ -6,7 +6,7 @@ import { MemoryBudget } from "@/components/landing/MemoryBudget";
 import { FeatureGrid } from "@/components/landing/FeatureGrid";
 import { TelegramPreview } from "@/components/landing/TelegramPreview";
 import { StackFiles } from "@/components/landing/StackFiles";
-import { DeploySteps } from "@/components/landing/DeploySteps";
+import { InstallSteps } from "@/components/landing/InstallSteps";
 import { DeployCTA } from "@/components/landing/EmptyState";
 import { MadeWithDyad } from "@/components/made-with-dyad";
 
@@ -22,7 +22,7 @@ const Index = () => {
         <FeatureGrid />
         <TelegramPreview />
         <StackFiles />
-        <DeploySteps />
+        <InstallSteps />
         <DeployCTA />
       </main>
       <Footer />

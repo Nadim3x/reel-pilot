@@ -67,9 +67,9 @@ export const DeployCTA = () => {
             size="lg"
             className="rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground shadow-[0_0_32px_rgba(0,230,118,0.35)] hover:bg-primary/90"
           >
-            <a href="#deploy">
+            <a href="#install">
               <Rocket className="mr-1.5 h-4 w-4" />
-              Deploy ReelPilot
+              Install on Termux
             </a>
           </Button>
           <Button

@@ -25,19 +25,19 @@ export const Hero = () => {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
             </span>
-            Fly.io shared-cpu-1x · 256MB RAM · region sin
+            Android · Termux · no root required
           </Badge>
 
           <h1 className="max-w-4xl text-balance text-4xl font-bold leading-tight tracking-tight sm:text-6xl">
-            Cross-post reels on a{" "}
-            <span className="text-primary text-glow">256MB budget</span>
+            Cross-post reels from{" "}
+            <span className="text-primary text-glow">your pocket</span>
           </h1>
 
           <p className="max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-            ReelPilot is a featherweight Telegram bot + web panel that downloads a
-            reel once and publishes it to every active Instagram and TikTok
-            account — streamed to disk, garbage-collected on schedule, and
-            strictly free of headless browsers.
+            ReelPilot is a featherweight Telegram bot + web panel that installs
+            on your Android in one line — it downloads a reel once and
+            publishes it to every active Instagram and TikTok account,
+            streamed to disk and strictly free of headless browsers.
           </p>
 
           <div className="mt-2 flex w-full flex-wrap items-center justify-center gap-3">
@@ -46,8 +46,8 @@ export const Hero = () => {
               size="lg"
               className="rounded-full bg-primary px-7 text-base font-semibold text-primary-foreground shadow-[0_0_32px_rgba(0,230,118,0.35)] hover:bg-primary/90"
             >
-              <a href="#deploy">
-                Launch the stack
+              <a href="#install">
+                Install on your phone
                 <ArrowRight className="ml-1 h-4 w-4" />
               </a>
             </Button>
@@ -63,9 +63,9 @@ export const Hero = () => {
 
           <dl className="mt-10 grid w-full max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
             {[
-              { icon: Gauge, value: "256MB", label: "RAM ceiling" },
+              { icon: Gauge, value: "24/7", label: "wake-locked uptime" },
               { icon: ShieldCheck, value: "0", label: "headless browsers" },
-              { icon: Cpu, value: "1x", label: "shared CPU" },
+              { icon: Cpu, value: "ARM64", label: "native on your phone" },
               { icon: ArrowRight, value: "16K", label: "stream chunks" },
             ].map(({ icon: Icon, value, label }) => (
               <div

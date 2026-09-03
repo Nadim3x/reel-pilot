@@ -1,22 +1,24 @@
 import { Copy, Check } from "lucide-react";
 import { useState } from "react";
 
+const ONE_LINER =
+  "bash <(curl -fsSL https://raw.githubusercontent.com/Nadim3x/reel-pilot/main/termux-setup.sh)";
+
 const steps = [
   {
-    title: "Create the app + volume",
-    code: `fly launch --no-deploy --name reelpilot --region sin
-fly volumes create bot_data --size 1 --region sin`,
+    title: "One line, any phone",
+    code: ONE_LINER,
   },
   {
-    title: "Set the bot token",
-    code: `fly secrets set TELEGRAM_BOT_TOKEN=123456:ABC-your-token \\
-  WEBAPP_PUBLIC_URL=https://reelpilot.fly.dev`,
+    title: "Give it the bot token",
+    code: `cd ~/ReelPilot
+export TELEGRAM_BOT_TOKEN="123456:ABC-your-token"
+export IMAGEIO_FFMPEG_EXE="$(command -v ffmpeg)"`,
   },
   {
-    title: "Ship it",
-    code: `fly deploy
-curl https://reelpilot.fly.dev/health
-# → {"status": "healthy"}`,
+    title: "Lift off",
+    code: `python main.py
+# dashboard → http://localhost:8080`,
   },
 ];
 
@@ -46,9 +48,9 @@ const CmdBlock = ({ code }: { code: string }) => {
   );
 };
 
-export const DeploySteps = () => {
+export const InstallSteps = () => {
   return (
-    <section id="deploy" className="relative py-20 sm:py-24">
+    <section id="install" className="relative py-20 sm:py-24">
       <div
         className="absolute inset-x-0 top-0 h-px"
         style={{
@@ -59,15 +61,16 @@ export const DeploySteps = () => {
       <div className="section-shell">
         <div className="mb-12 max-w-2xl">
           <p className="font-mono-tech text-sm font-medium uppercase tracking-[0.2em] text-primary">
-            /deployment
+            /install
           </p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-            Three commands to production
+            One line to your phone
           </h2>
           <p className="mt-3 text-muted-foreground">
-            The machine stays running (auto-stop off, min 1 machine) so Telegram
-            polling never misses an update. Persistent state lives on the
-            bot_data volume at /data.
+            Termux fetches the installer, which pulls python, ffmpeg and the
+            pinned dependencies into <span className="font-mono-tech text-primary">~/ReelPilot</span> and
+            grabs a wake lock. Root is optional — it only buys you a silenced
+            phantom-process killer.
           </p>
         </div>
 
@@ -93,10 +96,10 @@ export const DeploySteps = () => {
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            ["App name", "reelpilot"],
-            ["Machine", "shared-cpu-1x · 256MB"],
-            ["Volume", "bot_data → /data"],
-            ["Port", "8080 → 0.0.0.0"],
+            ["Home", "~/ReelPilot"],
+            ["Dashboard", "localhost:8080"],
+            ["Root needed", "no"],
+            ["Autostart", "Termux:Boot"],
           ].map(([k, v]) => (
             <div
               key={k}

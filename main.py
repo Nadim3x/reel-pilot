@@ -70,7 +70,7 @@ HELP_TEXT = (
     "• A progress bar shows live status: <code>[████░░░░░░] 40%</code>\n\n"
     "<b>Custom thumbnail</b>\n"
     "• <code>/setthumb</code> — reply to a photo, or attach one, to set the "
-    "global cover image (<code>/data/global_custom_thumb.jpg</code>).\n"
+    "global cover image (<code>global_custom_thumb.jpg</code> in the data dir).\n"
     "• <code>/delthumb</code> — delete the custom thumbnail.\n\n"
     "<b>Access</b>\n"
     "• New users are added to the approval queue and notified.\n"

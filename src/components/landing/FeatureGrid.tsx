@@ -31,7 +31,7 @@ const features = [
   {
     icon: ImagePlus,
     title: "Custom thumbnails",
-    body: "/setthumb saves any photo as /data/global_custom_thumb.jpg; every upload uses it, auto-resized into instagrapi's 320–1440px band.",
+    body: "/setthumb saves any photo as the data dir's global_custom_thumb.jpg; every upload uses it, auto-resized into instagrapi's 320–1440px band.",
   },
   {
     icon: SlidersHorizontal,

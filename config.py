@@ -1,10 +1,12 @@
 """
 ReelPilot — central configuration.
 
-The whole stack is engineered around a 256 MB RAM budget on Fly.io
-(shared-cpu-1x), so every default here is deliberately frugal:
-tiny network buffers, single-threaded downloads, and explicit paths
-that never assume more than one worker process.
+The whole stack is engineered to run in a single ordinary process — a
+polling Telegram bot, a waitress dashboard thread and SQLite — with tiny
+network buffers, single-threaded downloads, and explicit paths that never
+assume more than one worker process. It is developed and deployed on
+Android via Termux (termux-setup.sh), where this frugality keeps it a
+polite background citizen.
 """
 
 import os
@@ -13,15 +15,16 @@ from pathlib import Path
 
 # ---------------------------------------------------------------------------
 # Python runtime memory guards (best-effort when set before interpreter
-# arenas are allocated; harmless otherwise). These are also baked into the
-# Dockerfile environment.
+# arenas are allocated; harmless otherwise). The installer also exports
+# these in the Termux environment.
 # ---------------------------------------------------------------------------
 os.environ.setdefault("MALLOC_ARENA_MAX", "2")
 os.environ.setdefault("PYTHONUNBUFFERED", "1")
 
 # ---------------------------------------------------------------------------
-# Persistent storage — Fly.io mounts the "bot_data" volume at /data.
-# Locally (or when no volume exists) we fall back to the working directory.
+# Persistent storage — REELPILOT_DATA_DIR wins, /data is the conventional
+# server mount, and anything else (e.g. Termux) falls back to the working
+# directory so the bot can run unprivileged anywhere.
 # ---------------------------------------------------------------------------
 
 
@@ -72,8 +75,8 @@ ACCOUNT_DELAY_MAX: int = 7
 # yt-dlp — memory-frugal profile.
 #
 # The downloader streams to disk chunk-by-chunk; a 16K network buffer and a
-# 5 MB/s rate cap keep peak RSS and disk writes predictable inside the tiny
-# shared-cpu-1x container. No browser extractors are used anywhere.
+# 5 MB/s rate cap keep peak RSS and disk writes predictable on small or
+# shared devices (phones, tiny VMs). No browser extractors are used anywhere.
 # ---------------------------------------------------------------------------
 YDL_COMMON_OPTS: dict = {
     "quiet": True,
@@ -90,7 +93,7 @@ YDL_COMMON_OPTS: dict = {
     "overwrites": True,
 }
 
-# Hard safety rails for the 256 MB container.
+# Safety rails — keep downloads well under the device's free space.
 MAX_VIDEO_MB: int = 90        # refuse to fetch anything above this
 MIN_FREE_DISK_MB: int = 120   # refuse to start a download below this
 

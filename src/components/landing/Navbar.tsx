@@ -16,7 +16,7 @@ export const Navbar = () => {
             ["Dashboard", "#dashboard"],
             ["Memory", "#memory"],
             ["Stack", "#stack"],
-            ["Deploy", "#deploy"],
+            ["Install", "#install"],
           ].map(([label, href]) => (
             <a
               key={href}
@@ -28,11 +28,11 @@ export const Navbar = () => {
           ))}
         </nav>
         <a
-          href="#deploy"
+          href="#install"
           className="flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/20"
         >
           <Terminal className="h-4 w-4" />
-          fly deploy
+          install on termux
         </a>
       </div>
     </header>
@@ -48,7 +48,7 @@ export const Footer = () => {
             <span className="h-2 w-2 rounded-full bg-primary" />
             GET /health → {"{ status: healthy }"}
           </span>
-          <span className="font-mono-tech">region sin · 0.0.0.0:8080</span>
+          <span className="font-mono-tech">0.0.0.0:8080 · ~/ReelPilot</span>
           <span className="font-mono-tech">MALLOC_ARENA_MAX=2</span>
         </div>
         <div className="flex items-center gap-2 text-xs text-muted-foreground/80">

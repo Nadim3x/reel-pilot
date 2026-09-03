@@ -6,8 +6,7 @@ import {
   FlaskConical,
   Send,
   Settings2,
-  Container,
-  FileJson,
+  Terminal,
 } from "lucide-react";
 
 type FileSpec = {
@@ -21,13 +20,13 @@ const files: FileSpec[] = [
   {
     name: "config.py",
     icon: Settings2,
-    desc: "Fallback paths /data → ./bot_data.db, yt-dlp budget options, link regexes",
+    desc: "Data dir: env override or ./bot_data_local · yt-dlp budget options · link regexes",
     code: `def _pick_data_dir() -> Path:
     preferred = Path(os.getenv("REELPILOT_DATA_DIR", "/data"))
     try:
         preferred.mkdir(parents=True, exist_ok=True)
         probe = preferred / ".write_probe"
-        probe.write_text("ok")
+        probe.write_text("ok", encoding="utf-8")
         probe.unlink(missing_ok=True)
         return preferred
     except OSError:
@@ -104,38 +103,14 @@ SUPER_ADMIN_ID = 5668590673  # everyone else needs approval
 # /start /help /setthumb /delthumb + link detection`,
   },
   {
-    name: "Dockerfile",
-    icon: Container,
-    desc: "python:3.11-slim + ffmpeg only — multi-stage wheels, <300MB image",
-    code: `FROM python:3.11-slim AS builder
-RUN pip wheel --wheel-dir /wheels -r requirements.txt
-
-FROM python:3.11-slim
-ENV PYTHONUNBUFFERED=1 MALLOC_ARENA_MAX=2
-RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg \\
- && rm -rf /var/lib/apt/lists/*
-USER reelpilot
-ENTRYPOINT ["python", "-u", "main.py"]`,
-  },
-  {
-    name: "fly.toml",
-    icon: FileJson,
-    desc: "sin region, port 8080, bot_data volume, machines always on",
-    code: `app = "reelpilot"
-primary_region = "sin"
-
-[http_service]
-  internal_port = 8080
-  auto_stop_machines = "off"
-  min_machines_running = 1
-
-[[mounts]]
-  source = "bot_data"
-  destination = "/data"
-
-[[vm]]
-  size = "shared-cpu-1x"
-  memory_mb = 256`,
+    name: "termux-setup.sh",
+    icon: Terminal,
+    desc: "The one-line installer — pkgs, pip, wake lock. No root needed",
+    code: `REPO_URL="https://github.com/Nadim3x/reel-pilot.git"
+pkg install -y python python-pip ffmpeg git clang libjpeg-turbo
+git clone --depth 1 "$REPO_URL" ~/ReelPilot
+pip install -r requirements.txt  # Pillow builds with clang, on-device
+termux-wake-lock               # stop Android from freezing the bot`,
   },
 ];
 
@@ -158,7 +133,7 @@ export const StackFiles = () => {
             /the stack
           </p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-            Seven files, one lean machine
+            Six files, one phone
           </h2>
         </div>
 

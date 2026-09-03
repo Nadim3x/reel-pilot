@@ -1,4 +1,4 @@
-# ReelPilot — minimal dependency footprint for the 256MB container.
+# ReelPilot — minimal dependency footprint (installs fine on Termux).
 # NO browser automation packages (selenium/playwright/pyppeteer are banned).
 python-telegram-bot==20.7
 Flask==3.0.0

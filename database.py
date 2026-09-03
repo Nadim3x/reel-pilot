@@ -1,10 +1,9 @@
 """
 ReelPilot — featherweight SQLite helper.
 
-Designed for a 256 MB container: a single lazily-created connection,
-WAL journaling (so the dashboard and bot never block each other),
-and startup schema self-healing that tolerates older or partially
-created databases without manual migration.
+A single lazily-created connection, WAL journaling (so the dashboard and
+bot never block each other), and startup schema self-healing that tolerates
+older or partially created databases without manual migration.
 """
 
 import logging
