@@ -1,31 +1,37 @@
-# ReelPilot — Fly.io deployment for the 256MB shared-cpu-1x machine.
-app = "reelpilot"
-primary_region = "sin"
+# fly.toml app configuration file generated for reel-pilot on 2026-09-03T18:30:07Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'reel-pilot'
+primary_region = 'sin'
 
 [build]
 
 [env]
-  PORT = "8080"
-  PYTHONUNBUFFERED = "1"
-  MALLOC_ARENA_MAX = "2"
+  MALLOC_ARENA_MAX = '2'
+  PORT = '8080'
+  PYTHONUNBUFFERED = '1'
+
+[[mounts]]
+  source = 'bot_data'
+  destination = '/data'
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = "off"
+  auto_stop_machines = 'off'
   auto_start_machines = true
   min_machines_running = 1
-  processes = ["app"]
+  processes = ['app']
 
   [http_service.concurrency]
-    type = "requests"
-    soft_limit = 30
+    type = 'requests'
     hard_limit = 50
-
-[[mounts]]
-  source = "bot_data"
-  destination = "/data"
+    soft_limit = 30
 
 [[vm]]
-  size = "shared-cpu-1x"
+  size = 'shared-cpu-1x'
+  cpu_kind = 'shared'
+  cpus = 1
   memory_mb = 256
