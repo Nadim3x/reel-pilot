@@ -1,4 +1,4 @@
-import { CheckCircle2, XCircle } from "lucide-react";
+import { CircleCheckBig, CircleX } from "lucide-react";
 import type { ReactNode } from "react";
 
 const Bubble = ({
@@ -46,7 +46,7 @@ export const TelegramPreview = () => {
               "Custom thumbnails via /setthumb, removed with /delthumb",
             ].map((item) => (
               <li key={item} className="flex items-start gap-2.5">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <CircleCheckBig className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <span className="text-muted-foreground">{item}</span>
               </li>
             ))}
@@ -83,15 +83,15 @@ export const TelegramPreview = () => {
               <p className="font-mono-tech text-xs text-primary">🛩 Done · Instagram</p>
               <div className="mt-2 flex flex-col gap-1.5">
                 <span className="flex items-center gap-2 text-xs">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />
+                  <CircleCheckBig className="h-3.5 w-3.5 shrink-0 text-primary" />
                   <span className="font-mono-tech">mint.reels · C7xK2mN</span>
                 </span>
                 <span className="flex items-center gap-2 text-xs">
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />
+                  <CircleCheckBig className="h-3.5 w-3.5 shrink-0 text-primary" />
                   <span className="font-mono-tech">night.sessions · C7xK3a</span>
                 </span>
                 <span className="flex items-center gap-2 text-xs">
-                  <XCircle className="h-3.5 w-3.5 shrink-0 text-red-400" />
+                  <CircleX className="h-3.5 w-3.5 shrink-0 text-red-400" />
                   <span className="font-mono-tech text-muted-foreground">
                     @clips.daily · session expired
                   </span>

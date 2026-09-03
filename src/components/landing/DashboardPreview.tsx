@@ -1,4 +1,4 @@
-import { Instagram, Music2, Users, Activity, CheckCircle2, PauseCircle } from "lucide-react";
+import { Instagram, Music2, Users, Activity, CircleCheckBig, CirclePause } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const StatCard = ({ label, value, sub }: { label: string; value: string; sub?: string }) => (
@@ -76,14 +76,14 @@ export const DashboardPreview = () => {
                       </Badge>
                       {state === "live" ? (
                         <Badge className="gap-1 border-primary/40 bg-primary/10 text-primary">
-                          <CheckCircle2 className="h-3 w-3" /> live
+                          <CircleCheckBig className="h-3 w-3" /> live
                         </Badge>
                       ) : (
                         <Badge
                           variant="outline"
                           className="gap-1 border-amber-400/40 text-amber-300"
                         >
-                          <PauseCircle className="h-3 w-3" /> paused
+                          <CirclePause className="h-3 w-3" /> paused
                         </Badge>
                       )}
                     </span>

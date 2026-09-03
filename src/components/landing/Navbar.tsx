@@ -1,4 +1,4 @@
-import { GitHub, Terminal } from "lucide-react";
+import { Github, Terminal } from "lucide-react";
 
 export const Navbar = () => {
   return (
@@ -52,7 +52,7 @@ export const Footer = () => {
           <span className="font-mono-tech">MALLOC_ARENA_MAX=2</span>
         </div>
         <div className="flex items-center gap-2 text-xs text-muted-foreground/80">
-          <GitHub className="h-3.5 w-3.5" />
+          <Github className="h-3.5 w-3.5" />
           ReelPilot · engineered to stay under the OOM line
         </div>
       </div>

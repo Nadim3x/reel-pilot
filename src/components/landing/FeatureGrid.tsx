@@ -4,7 +4,7 @@ import {
   Send,
   ShieldAlert,
   SlidersHorizontal,
-  ImageIcon,
+  ImagePlus,
 } from "lucide-react";
 
 const features = [
@@ -29,7 +29,7 @@ const features = [
     body: "instagrapi logins surface a 6-digit code modal in the dashboard when TwoFactorRequiredError fires. No challenge loops.",
   },
   {
-    icon: ImageIcon,
+    icon: ImagePlus,
     title: "Custom thumbnails",
     body: "/setthumb saves any photo as /data/global_custom_thumb.jpg; every upload uses it, auto-resized into instagrapi's 320–1440px band.",
   },
