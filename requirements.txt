@@ -1,0 +1,9 @@
+# ReelPilot — minimal dependency footprint for the 256MB container.
+# NO browser automation packages (selenium/playwright/pyppeteer are banned).
+python-telegram-bot==20.7
+Flask==3.0.0
+instagrapi==2.1.2
+yt-dlp
+requests
+pillow
+waitress
